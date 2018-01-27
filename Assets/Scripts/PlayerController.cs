@@ -10,6 +10,7 @@ public class PlayerController : PhysicsObject
 
     private SpriteRenderer spriteRenderer;
     private Animator animator;
+    private bool isFacingRight = true;
 
     // Use this for initialization
     void Awake()
@@ -35,11 +36,12 @@ public class PlayerController : PhysicsObject
                 velocity.y = velocity.y * 0.5f;
             }
         }
-
-        bool flipSprite = (spriteRenderer.flipX ? (move.x > 0.01f) : (move.x < 0.01f));
-        if (flipSprite)
+        
+        if((move.x > 0.01f && !isFacingRight) || (move.x < -0.01f && isFacingRight))
         {
             spriteRenderer.flipX = !spriteRenderer.flipX;
+            isFacingRight = !isFacingRight;
+
         }
 
         animator.SetBool("grounded", grounded);
