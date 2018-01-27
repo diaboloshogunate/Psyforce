@@ -5,6 +5,7 @@ using UnityEngine;
 public class gatewayScript : MonoBehaviour {
     public GameObject[] m_buttons;
     public float moveTime;
+    public float moveDistance;
 
     private Rigidbody2D rigidBody;
     private BoxCollider2D boxCollider;
@@ -17,11 +18,11 @@ public class gatewayScript : MonoBehaviour {
         inverseMoveTime = 1f / moveTime;
 	}
 	
-    public void buttonPressed(int amount)
+    public void buttonPressed(int direction)
     {
         Debug.Log("Message Received");
         Vector2 start = transform.position;
-        Vector2 end = start + new Vector2(0, amount);
+        Vector2 end = start + new Vector2(0, moveDistance * direction);
         StartCoroutine(SmoothMovement(end));
 
     }

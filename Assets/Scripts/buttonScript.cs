@@ -7,6 +7,7 @@ public class buttonScript : MonoBehaviour {
     public Sprite downSprite;
     public Sprite upSprite;
     public GameObject targetObject;
+    public bool moveTargetUp;
 
     private bool isDown;
     private SpriteRenderer spriteRenderer;
@@ -33,7 +34,9 @@ public class buttonScript : MonoBehaviour {
         if (collision.gameObject.tag == "Player")
         {
             Debug.Log("Button " + gameObject.name + " Pushed");
-            targetObject.SendMessage("buttonPressed", 3);
+            int direction = -1;
+            if(!moveTargetUp) { direction = 1; }
+            targetObject.SendMessage("buttonPressed", direction);
         }
     }
 
