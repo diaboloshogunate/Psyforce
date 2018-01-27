@@ -14,6 +14,14 @@ public class buttonScript : MonoBehaviour {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+
+        }
+    }
+
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
