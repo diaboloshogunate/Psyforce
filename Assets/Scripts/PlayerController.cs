@@ -13,6 +13,7 @@ public class PlayerController : PhysicsObject
     public float jumpHeight = 5f;
     public float jumpApexTime = 0.5f;
     public float jumpRelease = 0.5f;
+    public int playerNumber;
 
     private SpriteRenderer spriteRenderer;
     private Animator animator;
@@ -31,13 +32,14 @@ public class PlayerController : PhysicsObject
     {
         Vector2 move = Vector2.zero;
 
-        move.x = Input.GetAxis("Horizontal");
+        move.x = Input.GetAxis("P" + playerNumber + "_Horizontal");
+        
 
-        if (Input.GetButtonDown("Jump") && grounded)
+        if (Input.GetButtonDown("P" + playerNumber + "_Jump") && grounded)
         {
             velocity.y = jumpVelocity;
         }
-        else if (Input.GetButtonUp("Jump"))
+        else if (Input.GetButtonUp("P" + playerNumber + "_Jump"))
         {
             if (velocity.y > 0)
             {
