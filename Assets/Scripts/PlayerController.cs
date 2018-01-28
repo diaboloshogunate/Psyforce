@@ -57,5 +57,10 @@ public class PlayerController : PhysicsObject
 
         targetVelocity = move * maxSpeed;
     }
+
+    public void kill()
+    {
+        isAlive = false;
+    }
 }
 
