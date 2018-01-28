@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114449713049366880}
   - component: {fileID: 50967261966704804}
   m_Layer: 0
-  m_Name: Gateway
+  m_Name: gateway
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,8 +100,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_buttons: []
-  moveTime: 0.1
-  moveDistance: 10
+  isDown: 1
+  smooth: 0.1
+  distance: 5
 --- !u!212 &212625368155805056
 SpriteRenderer:
   m_ObjectHideFlags: 1
