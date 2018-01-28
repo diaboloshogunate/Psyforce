@@ -13,6 +13,7 @@ public class PlayerController : PhysicsObject
     public float jumpHeight = 5f;
     public float jumpApexTime = 0.5f;
     public float jumpRelease = 0.5f;
+    public int playerNumber;
 
     private SpriteRenderer spriteRenderer;
     private Animator animator;
@@ -29,15 +30,18 @@ public class PlayerController : PhysicsObject
 
     protected override void ComputeVelocity()
     {
+        if (!isAlive) return;
+
         Vector2 move = Vector2.zero;
+        
+        move.x = Input.GetAxis("P" + playerNumber + "_Horizontal");
+        
 
-        move.x = Input.GetAxis("Horizontal");
-
-        if (Input.GetButtonDown("Jump") && grounded)
+        if (Input.GetButtonDown("P" + playerNumber + "_Jump") && grounded)
         {
             velocity.y = jumpVelocity;
         }
-        else if (Input.GetButtonUp("Jump"))
+        else if (Input.GetButtonUp("P" + playerNumber + "_Jump"))
         {
             if (velocity.y > 0)
             {
@@ -60,7 +64,10 @@ public class PlayerController : PhysicsObject
 
     public void kill()
     {
+        velocity = new Vector2(0, 0);
+        animator.StopPlayback();
         isAlive = false;
+        
     }
 }
 
