@@ -5,16 +5,22 @@ using UnityEngine;
 public class electricWallScript : MonoBehaviour {
 
     public float moveSpeed;
+    public float delay;
+    private bool isMoving = false;
 
     private Rigidbody2D rb2d;
-
-	// Use this for initialization
+    
 	void Awake () {
         rb2d = GetComponent<Rigidbody2D>();
-        rb2d.AddForce(new Vector2(moveSpeed, 0));
 	}
-    // Update is called once per frame
+
     void Update () {
-		
-	}
+        if (delay < 0) return;
+
+        delay -= Time.deltaTime;
+
+        if (delay > 0) return;
+
+        rb2d.AddForce(new Vector2(moveSpeed, 0));
+    }
 }
