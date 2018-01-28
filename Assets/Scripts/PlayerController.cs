@@ -30,8 +30,10 @@ public class PlayerController : PhysicsObject
 
     protected override void ComputeVelocity()
     {
-        Vector2 move = Vector2.zero;
+        if (!isAlive) return;
 
+        Vector2 move = Vector2.zero;
+        
         move.x = Input.GetAxis("P" + playerNumber + "_Horizontal");
         
 
@@ -62,7 +64,10 @@ public class PlayerController : PhysicsObject
 
     public void kill()
     {
+        velocity = new Vector2(0, 0);
+        animator.StopPlayback();
         isAlive = false;
+        
     }
 }
 
