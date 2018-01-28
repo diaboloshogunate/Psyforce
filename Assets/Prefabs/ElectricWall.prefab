@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114213922153453832}
   - component: {fileID: 50189956526755164}
   - component: {fileID: 61954251203709834}
+  - component: {fileID: 114679601088032644}
   m_Layer: 0
   m_Name: ElectricWall
   m_TagString: Untagged
@@ -38,8 +39,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1720774906125448}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.157, y: 5.542, z: 0}
-  m_LocalScale: {x: 2.570263, y: 2.570263, z: 0}
+  m_LocalPosition: {x: -15.5, y: 5.008, z: 0}
+  m_LocalScale: {x: 2.3051717, y: 2.3051717, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -63,7 +64,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 2
+  m_Constraints: 6
 --- !u!61 &61954251203709834
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -117,7 +118,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c9841f6169585f458e9350bda70ec61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 55
+  moveSpeed: 50
+  delay: 5
+--- !u!114 &114679601088032644
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1720774906125448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33f5dd30f6205f543aea092f077b987f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212819318695738780
 SpriteRenderer:
   m_ObjectHideFlags: 1

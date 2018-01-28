@@ -5,10 +5,12 @@ using UnityEngine;
 public class gatewayScript : MonoBehaviour {
     public GameObject[] m_buttons;
     public bool isDown = true;
-    public float smooth = 0.1f;
+    public float time = 0.1f;
     public float distance = 5;
+    private Vector3 moveFrom;
     private Vector3 moveTo;
     private bool moving = false;
+    private float smooth = 0f;
 
     private Rigidbody2D rigidBody;
     
@@ -21,7 +23,9 @@ public class gatewayScript : MonoBehaviour {
         if (moving) return;
         moving = true;
         int direction = isDown ? 1 : -1;
-        moveTo = transform.position + new Vector3(0, direction * distance, 0);
+        smooth = 0f;
+        moveFrom = transform.position;
+        moveTo = moveFrom + new Vector3(0, direction * distance, 0);
 }
     
     void Update () {
@@ -31,7 +35,7 @@ public class gatewayScript : MonoBehaviour {
             moving = !moving;
             isDown = !isDown;
         }
-        Vector3 smothedPosition = Vector3.Lerp(transform.position, moveTo, smooth);
-        transform.position = smothedPosition;
+        smooth += Time.deltaTime * time;
+        transform.position = Vector3.Lerp(moveFrom, moveTo, smooth);
     }
 }
