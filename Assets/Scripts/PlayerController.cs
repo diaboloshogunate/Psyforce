@@ -5,8 +5,13 @@ using UnityEngine;
 public class PlayerController : PhysicsObject
 {
 
-    public float maxSpeed = 7;
-    public float jumpTakeOffSpeed = 7;
+    public bool isAlive = true;
+
+    public float maxSpeed = 7f;
+    protected float gravity = 0f;
+    protected float jumpVelocity = 0f;
+    public float jumpHeight = 5f;
+    public float jumpApexTime = 0.5f;
 
     private SpriteRenderer spriteRenderer;
     private Animator animator;
@@ -17,6 +22,9 @@ public class PlayerController : PhysicsObject
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        gravity = (-2f * jumpHeight) / (jumpApexTime * jumpApexTime);
+        Physics2D.gravity = new Vector2(0f, gravity);
+        jumpVelocity =  Mathf.Sqrt(-2 * Physics2D.gravity.y * jumpHeight);
     }
 
     protected override void ComputeVelocity()
@@ -27,7 +35,7 @@ public class PlayerController : PhysicsObject
 
         if (Input.GetButtonDown("Jump") && grounded)
         {
-            velocity.y = jumpTakeOffSpeed;
+            velocity.y = jumpVelocity;
         }
         else if (Input.GetButtonUp("Jump"))
         {
@@ -46,7 +54,6 @@ public class PlayerController : PhysicsObject
 
         animator.SetBool("grounded", grounded);
         animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
-        Debug.Log(Mathf.Abs(velocity.x));
 
         targetVelocity = move * maxSpeed;
     }
