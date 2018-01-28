@@ -6,7 +6,7 @@ public class buttonScript : MonoBehaviour {
 
     public Sprite downSprite;
     public Sprite upSprite;
-    public GameObject targetObject;
+    public GameObject[] m_targetObject;
     public bool moveTargetUp;
 
     private bool isDown;
@@ -36,7 +36,10 @@ public class buttonScript : MonoBehaviour {
             Debug.Log("Button " + gameObject.name + " Pushed");
             int direction = -1;
             if(!moveTargetUp) { direction = 1; }
-            targetObject.SendMessage("buttonPressed", direction);
+            foreach(GameObject o in m_targetObject)
+            {
+                o.SendMessage("buttonPressed", 1);
+            }
         }
     }
 
