@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114449713049366880}
   - component: {fileID: 50967261966704804}
   m_Layer: 0
-  m_Name: gateway
+  m_Name: Gateway
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1825356598974428}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.07, y: 0.58, z: 0}
+  m_LocalPosition: {x: 10.51, y: 6.41, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_buttons: []
   moveTime: 1
+  moveDistance: 10
 --- !u!212 &212625368155805056
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -135,7 +136,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c6e3f0a25aa8b1f4abffa6cc3a7a42ed, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d9d85349244168449b32a19edcc8dae9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
