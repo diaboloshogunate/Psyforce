@@ -34,11 +34,11 @@ public class buttonScript : MonoBehaviour {
         if (collision.gameObject.tag == "Player")
         {
             Debug.Log("Button " + gameObject.name + " Pushed");
-            int direction = -1;
-            if(!moveTargetUp) { direction = 1; }
+            int direction = 1;
+            if(!moveTargetUp) { direction = -1; }
             foreach(GameObject o in m_targetObject)
             {
-                o.SendMessage("buttonPressed", 1);
+                o.SendMessage("buttonPressed", direction);
             }
         }
     }
@@ -48,6 +48,14 @@ public class buttonScript : MonoBehaviour {
         if (collision.gameObject.tag == "Player")
         {
            isDown = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            isDown = false;
         }
     }
 }
