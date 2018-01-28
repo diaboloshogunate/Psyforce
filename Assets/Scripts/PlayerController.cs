@@ -12,12 +12,12 @@ public class PlayerController : PhysicsObject
     protected float jumpVelocity = 0f;
     public float jumpHeight = 5f;
     public float jumpApexTime = 0.5f;
+    public float jumpRelease = 0.5f;
 
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private bool isFacingRight = true;
-
-    // Use this for initialization
+    
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -41,7 +41,7 @@ public class PlayerController : PhysicsObject
         {
             if (velocity.y > 0)
             {
-                velocity.y = velocity.y * 0.5f;
+                velocity.y = velocity.y * jumpRelease;
             }
         }
         
