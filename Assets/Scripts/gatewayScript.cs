@@ -7,15 +7,14 @@ public class gatewayScript : MonoBehaviour {
     public bool isDown = true;
     public float time = 0.1f;
     public float distance = 5;
-    private Vector3 moveFrom;
-    private Vector3 moveTo;
+    private Vector2 moveFrom;
+    private Vector2 moveTo;
     private bool moving = false;
     private float smooth = 0f;
-
-    private Rigidbody2D rigidBody;
+    protected Rigidbody2D rb2d;
     
 	void Start () {
-        rigidBody = GetComponent<Rigidbody2D>();
+        rb2d = GetComponent<Rigidbody2D>();
     }
 	
     public void buttonPressed()
@@ -24,18 +23,18 @@ public class gatewayScript : MonoBehaviour {
         moving = true;
         int direction = isDown ? 1 : -1;
         smooth = 0f;
-        moveFrom = transform.position;
-        moveTo = moveFrom + new Vector3(0, direction * distance, 0);
+        moveFrom = rb2d.position;
+        moveTo = moveFrom + new Vector2(0, direction * distance);
 }
     
     void Update () {
         if (!moving) return;
-        if (transform.position == moveTo)
+        if (rb2d.position == moveTo)
         {
             moving = !moving;
             isDown = !isDown;
         }
         smooth += Time.deltaTime * time;
-        transform.position = Vector3.Lerp(moveFrom, moveTo, smooth);
+        transform.position = Vector2.Lerp(moveFrom, moveTo, smooth);
     }
 }
