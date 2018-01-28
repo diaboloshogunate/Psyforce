@@ -24,7 +24,6 @@ public class gatewayScript : MonoBehaviour {
         Vector2 start = transform.position;
         Vector2 end = start + new Vector2(0, moveDistance * direction);
         StartCoroutine(SmoothMovement(end));
-
     }
 
     protected IEnumerator SmoothMovement(Vector3 end)

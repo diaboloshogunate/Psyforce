@@ -3,17 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class footstepsAudioScript : MonoBehaviour {
-    public AudioClip[] footstepClips;
+    public AudioClip footstepClip1;
+    public AudioClip footsetpClip2;
+
+    private AudioSource audioSource;
+    private AudioClip currentClip;
 
     private Animator animator;
-	// Use this for initialization
-	void Start () {
-        animator = GetComponent<Animator>();
+    // Use this for initialization
+    void Awake() {
+        audioSource = GetComponent<AudioSource>();
         Debug.Log("!!!! Got animator");
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        Debug.Log(animator.GetCurrentAnimatorClipInfo(0).ToString());
-	}
+        currentClip = footstepClip1;
+        animator = GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        Debug.Log(animator.GetCurrentAnimatorStateInfo(0).ToString());
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("player - 1 - walk"))
+        {
+            audioSource.clip = currentClip;
+            audioSource.PlayOneShot(currentClip);
+            Debug.Log("Clip Played?!");
+        }
+    }
 }
