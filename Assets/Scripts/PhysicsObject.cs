@@ -6,7 +6,6 @@ public class PhysicsObject : MonoBehaviour
 {
 
     public float minGroundNormalY = .65f;
-    public float gravityModifier = 1f;
 
     protected Vector2 targetVelocity;
     protected bool grounded;
@@ -46,7 +45,7 @@ public class PhysicsObject : MonoBehaviour
 
     void FixedUpdate()
     {
-        velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
+        velocity += Physics2D.gravity * Time.deltaTime;
         velocity.x = targetVelocity.x;
 
         grounded = false;

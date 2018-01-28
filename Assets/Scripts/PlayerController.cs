@@ -5,17 +5,26 @@ using UnityEngine;
 public class PlayerController : PhysicsObject
 {
 
-    public float maxSpeed = 7;
-    public float jumpTakeOffSpeed = 7;
+    public bool isAlive = true;
+
+    public float maxSpeed = 7f;
+    protected float gravity = 0f;
+    protected float jumpVelocity = 0f;
+    public float jumpHeight = 5f;
+    public float jumpApexTime = 0.5f;
 
     private SpriteRenderer spriteRenderer;
     private Animator animator;
+    private bool isFacingRight = true;
 
     // Use this for initialization
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        gravity = (-2f * jumpHeight) / (jumpApexTime * jumpApexTime);
+        Physics2D.gravity = new Vector2(0f, gravity);
+        jumpVelocity =  Mathf.Sqrt(-2 * Physics2D.gravity.y * jumpHeight);
     }
 
     protected override void ComputeVelocity()
@@ -26,7 +35,7 @@ public class PlayerController : PhysicsObject
 
         if (Input.GetButtonDown("Jump") && grounded)
         {
-            velocity.y = jumpTakeOffSpeed;
+            velocity.y = jumpVelocity;
         }
         else if (Input.GetButtonUp("Jump"))
         {
@@ -35,16 +44,16 @@ public class PlayerController : PhysicsObject
                 velocity.y = velocity.y * 0.5f;
             }
         }
-
-        bool flipSprite = (spriteRenderer.flipX ? (move.x > 0.01f) : (move.x < 0.01f));
-        if (flipSprite)
+        
+        if((move.x > 0.01f && !isFacingRight) || (move.x < -0.01f && isFacingRight))
         {
             spriteRenderer.flipX = !spriteRenderer.flipX;
+            isFacingRight = !isFacingRight;
+
         }
 
         animator.SetBool("grounded", grounded);
         animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
-        Debug.Log(Mathf.Abs(velocity.x));
 
         targetVelocity = move * maxSpeed;
     }
