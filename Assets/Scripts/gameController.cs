@@ -8,6 +8,7 @@ public class gameController : MonoBehaviour {
     public GameObject player1;
     public GameObject player2;
     public Canvas gameOverCanvas;
+    public Canvas winCanvas;
 
     private PlayerController p1Script;
     private PlayerController p2Script;
@@ -27,6 +28,11 @@ public class gameController : MonoBehaviour {
             Animation anim = gameOverCanvas.GetComponent<Animation>();
             StartCoroutine(gameOver(anim));
         }
+
+        if (Input.GetButtonDown("Cancel"))
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 
     IEnumerator gameOver(Animation anim)
@@ -34,6 +40,19 @@ public class gameController : MonoBehaviour {
         anim.Play();
         // This is awful but I'm not sure what to do about it.
         yield return new WaitForSeconds(3);
+        SceneManager.LoadScene(0);
+    }
+
+    void WinState()
+    {
+        StartCoroutine(WinCanvasAndExit(winCanvas));
+    }
+
+    IEnumerator WinCanvasAndExit(Canvas canvas)
+    {
+        Debug.Log("WinState coroutine started");
+        Instantiate(canvas);
+        yield return new WaitForSeconds(5);
         SceneManager.LoadScene(0);
     }
 }
