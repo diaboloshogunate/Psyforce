@@ -2,39 +2,48 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class gatewayScript : MonoBehaviour {
-    public GameObject[] m_buttons;
+public class gatewayScript : MonoBehaviour
+{
+    public bool moving = false;
     public bool isDown = true;
-    public float time = 0.1f;
+    public float speed = 0.5f;
     public float distance = 5;
-    private Vector2 moveFrom;
-    private Vector2 moveTo;
-    private bool moving = false;
-    private float smooth = 0f;
     protected Rigidbody2D rb2d;
+    public Vector2 moveFrom;
+    public Vector2 moveTo;
+    private float start;
+    public float smooth = 0f;
     
 	void Start () {
         rb2d = GetComponent<Rigidbody2D>();
+        positions();
+    }
+
+    public void positions()
+    {
+        int direction = isDown ? 1 : -1;
+        moveFrom = rb2d.transform.position;
+        moveTo = moveFrom + new Vector2(0, direction * distance);
     }
 	
     public void buttonPressed()
     {
         if (moving) return;
+        positions();
         moving = true;
-        int direction = isDown ? 1 : -1;
-        smooth = 0f;
-        moveFrom = rb2d.position;
-        moveTo = moveFrom + new Vector2(0, direction * distance);
-}
+        start = Time.time;
+    }
     
     void Update () {
         if (!moving) return;
-        if (rb2d.position == moveTo)
+        
+        if (Mathf.Abs(rb2d.transform.position.y - moveTo.y) < 0.01)
         {
             moving = !moving;
             isDown = !isDown;
         }
-        smooth += Time.deltaTime * time;
-        transform.position = Vector2.Lerp(moveFrom, moveTo, smooth);
+
+        smooth = (Time.time - start) * speed / Mathf.Abs(distance);
+        rb2d.transform.position = Vector2.Lerp(moveFrom, moveTo, smooth);
     }
 }
