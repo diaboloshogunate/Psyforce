@@ -29,6 +29,11 @@ public class gameController : MonoBehaviour {
             StartCoroutine(gameOver(anim));
         }
 
+        if(p1Script.hasWon || p2Script.hasWon)
+        {
+            StartCoroutine(WinCanvasAndExit(winCanvas));
+        }
+
         if (Input.GetButtonDown("Cancel"))
         {
             SceneManager.LoadScene(0);
@@ -41,11 +46,6 @@ public class gameController : MonoBehaviour {
         // This is awful but I'm not sure what to do about it.
         yield return new WaitForSeconds(3);
         SceneManager.LoadScene(0);
-    }
-
-    void WinState()
-    {
-        StartCoroutine(WinCanvasAndExit(winCanvas));
     }
 
     IEnumerator WinCanvasAndExit(Canvas canvas)

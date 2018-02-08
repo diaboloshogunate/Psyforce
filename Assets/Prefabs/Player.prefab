@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212562268777154394}
   - component: {fileID: 50902946820829616}
   - component: {fileID: 61590508568121574}
+  - component: {fileID: 114910822405669656}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -78,7 +79,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    oldSize: {x: 1.7777778, y: 1.7777778}
     newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -87,6 +88,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &114910822405669656
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1967748691151936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab49da61fa49d0c49b0056d88d052352, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minGroundNormalY: 0.65
+  isAlive: 1
+  maxSpeed: 10
+  jumpHeight: 4.6
+  jumpApexTime: 0.5
+  jumpRelease: 0.5
+  playerNumber: 0
 --- !u!212 &212562268777154394
 SpriteRenderer:
   m_ObjectHideFlags: 1

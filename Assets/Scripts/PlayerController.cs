@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerController : PhysicsObject
 {
-
     public bool isAlive = true;
+    public bool hasWon = false;
 
     public float maxSpeed = 7f;
     protected float gravity = 0f;
@@ -19,6 +19,8 @@ public class PlayerController : PhysicsObject
     private Animator animator;
     private bool isFacingRight = true;
     
+    protected RaycastHit2D[] hitBuffer = new RaycastHit2D[16];
+
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -28,6 +30,22 @@ public class PlayerController : PhysicsObject
         jumpVelocity =  Mathf.Sqrt(-2 * Physics2D.gravity.y * jumpHeight);
     }
 
+    protected void FixedUpdate()
+    {
+        base.FixedUpdate();
+
+        Vector2 dir = new Vector2(rb2d.velocity.x, 0f);
+        int count = rb2d.Cast(dir, hitBuffer);
+
+        for (int i = 0; i < count; i++)
+        {
+            if(!hasWon && hitBuffer[i].collider.tag.Equals("Finish"))
+            {
+                hasWon = true;
+            }
+        }
+    }
+
     protected override void ComputeVelocity()
     {
         if (!isAlive) return;
@@ -35,8 +53,6 @@ public class PlayerController : PhysicsObject
         Vector2 move = Vector2.zero;
         
         move.x = Input.GetAxis("P" + playerNumber + "_Horizontal");
-        
-
         if (Input.GetButtonDown("P" + playerNumber + "_Jump") && grounded)
         {
             velocity.y = jumpVelocity;
