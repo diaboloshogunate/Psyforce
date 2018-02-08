@@ -146,7 +146,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4912305526921284, guid: 5d2c624a257492749a19e8ca41188ec1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -6.5
+      value: -3.5
       objectReference: {fileID: 0}
     - target: {fileID: 4912305526921284, guid: 5d2c624a257492749a19e8ca41188ec1, type: 2}
       propertyPath: m_LocalPosition.z
@@ -470,6 +470,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minGroundNormalY: 0.65
   isAlive: 1
+  hasWon: 0
   maxSpeed: 10
   jumpHeight: 4.6
   jumpApexTime: 0.5
@@ -863,7 +864,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4912305526921284, guid: 5d2c624a257492749a19e8ca41188ec1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3.5
+      value: 6.5
       objectReference: {fileID: 0}
     - target: {fileID: 4912305526921284, guid: 5d2c624a257492749a19e8ca41188ec1, type: 2}
       propertyPath: m_LocalPosition.z
@@ -892,6 +893,11 @@ Prefab:
     - target: {fileID: 1183895954722964, guid: 5d2c624a257492749a19e8ca41188ec1, type: 2}
       propertyPath: m_Name
       value: t1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114441356383496044, guid: 5d2c624a257492749a19e8ca41188ec1,
+        type: 2}
+      propertyPath: isDown
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5d2c624a257492749a19e8ca41188ec1, type: 2}
@@ -1036,6 +1042,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minGroundNormalY: 0.65
   isAlive: 1
+  hasWon: 0
   maxSpeed: 10
   jumpHeight: 4.6
   jumpApexTime: 0.5
@@ -1350,18 +1357,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114155213574793690, guid: e309e6e7f6d19d74f88dbada917c8ade,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1138811234}
-    - target: {fileID: 114155213574793690, guid: e309e6e7f6d19d74f88dbada917c8ade,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: targetplayer
       value: 
       objectReference: {fileID: 896344652}
     m_RemovedComponents:
-    - {fileID: 114155213574793690, guid: e309e6e7f6d19d74f88dbada917c8ade, type: 2}
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: e309e6e7f6d19d74f88dbada917c8ade, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1802049191
@@ -2179,6 +2184,15 @@ Tilemap:
     second:
       m_TileIndex: 1
       m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 1
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
+  - first: {x: -13, y: -7, z: 0}
+    second:
+      m_TileIndex: 0
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 1
       m_ObjectToInstantiate: {fileID: 0}
@@ -3653,7 +3667,7 @@ Tilemap:
       m_ColliderType: 1
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 62
+  - m_RefCount: 63
     m_Data: {fileID: 11400000, guid: ceb3b395cabb3bf489758a6a64c6b77e, type: 2}
   - m_RefCount: 146
     m_Data: {fileID: 11400000, guid: 4d9f2b56a4a8d70479d3246b226b97e6, type: 2}
@@ -3664,14 +3678,14 @@ Tilemap:
   m_TileSpriteArray:
   - m_RefCount: 146
     m_Data: {fileID: 21300000, guid: aae87bc8b9c07b14b94fd4a802f17265, type: 3}
-  - m_RefCount: 62
+  - m_RefCount: 63
     m_Data: {fileID: 21300000, guid: 283ce1dd34dfa1c4895bf12eca49a1eb, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 41b23fbada1560c42a6dfd39b7fe98a9, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: aaefbe85bbc6d4844a1e5d974931a50e, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 210
+  - m_RefCount: 211
     m_Data:
       e00: 1
       e01: 0
@@ -3692,7 +3706,7 @@ Tilemap:
   m_TileColorArray:
   - m_RefCount: 0
     m_Data: {r: 0, g: 0, b: 21.71306, a: 1e-45}
-  - m_RefCount: 210
+  - m_RefCount: 211
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3806,14 +3820,18 @@ CompositeCollider2D:
         Y: 0
       - X: 170000000
         Y: -90000000
-    - - X: -60000000
-        Y: -50000000
-      - X: -130000000
-        Y: -50000000
-      - X: -130000000
+    - - X: -120000000
         Y: -60000000
       - X: -60000000
         Y: -60000000
+      - X: -60000000
+        Y: -50000000
+      - X: -130000000
+        Y: -50000000
+      - X: -130000000
+        Y: -70000000
+      - X: -120000000
+        Y: -70000000
   m_CompositePaths:
     m_Paths:
     - - {x: 19, y: 10}
@@ -3840,10 +3858,12 @@ CompositeCollider2D:
       - {x: -16, y: 0}
       - {x: 17, y: 0}
       - {x: 17, y: -9}
-    - - {x: -6, y: -5}
-      - {x: -13, y: -5}
-      - {x: -13, y: -6}
+    - - {x: -12, y: -6}
       - {x: -6, y: -6}
+      - {x: -6, y: -5}
+      - {x: -13, y: -5}
+      - {x: -13, y: -7}
+      - {x: -12, y: -7}
   m_VertexDistance: 0.0005
 --- !u!50 &2098984018
 Rigidbody2D:

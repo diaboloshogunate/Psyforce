@@ -20,6 +20,7 @@ public class PlayerController : PhysicsObject
     private bool isFacingRight = true;
     
     protected RaycastHit2D[] hitBuffer = new RaycastHit2D[16];
+    protected ContactFilter2D contactFilter;
 
     void Awake()
     {
@@ -30,18 +31,41 @@ public class PlayerController : PhysicsObject
         jumpVelocity =  Mathf.Sqrt(-2 * Physics2D.gravity.y * jumpHeight);
     }
 
+    void Start()
+    {
+        contactFilter.useTriggers = false;
+        contactFilter.SetLayerMask(Physics2D.GetLayerCollisionMask(gameObject.layer));
+        contactFilter.useLayerMask = true;
+    }
+
     protected void FixedUpdate()
     {
         base.FixedUpdate();
 
+        // only doing rayast for non physics calculations like win and lose collissions
+        // check for forward collissions
         Vector2 dir = new Vector2(rb2d.velocity.x, 0f);
         int count = rb2d.Cast(dir, hitBuffer);
-
         for (int i = 0; i < count; i++)
         {
             if(!hasWon && hitBuffer[i].collider.tag.Equals("Finish"))
             {
                 hasWon = true;
+            }
+        }
+        // check for above colliissions when the player is grounded (squshed)
+        if (grounded)
+        {
+            dir = new Vector2(0f, 1f);
+            count = rb2d.Cast(dir, contactFilter, hitBuffer, 0.1f);
+
+            for (int i = 0; i < count; i++)
+            {
+                Debug.Log(this.gameObject.name + " is colliding with " + hitBuffer[i].collider.gameObject.name);
+            }
+            if (count > 0)
+            {
+                isAlive = false;
             }
         }
     }
