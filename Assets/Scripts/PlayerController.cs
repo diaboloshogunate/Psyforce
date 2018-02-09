@@ -57,14 +57,8 @@ public class PlayerController : PhysicsObject
         // check for above colliissions when the player is grounded (squshed)
         if (grounded)
         {
-            dir = new Vector2(0f, 1f);
-            count = rb2d.Cast(dir, contactFilter, hitBuffer, 0.1f);
-
-            for (int i = 0; i < count; i++)
-            {
-                Debug.Log(this.gameObject.name + " is colliding with " + hitBuffer[i].collider.gameObject.name);
-            }
-            if (count > 0)
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 1.01f);
+            if (hit.collider != null)
             {
                 isAlive = false;
             }
