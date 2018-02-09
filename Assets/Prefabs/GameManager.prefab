@@ -51,6 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b87c5a1cc28631419185d2541d6dc60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 0}
-  player2: {fileID: 0}
-  gameOverCanvas: {fileID: 0}
+  players: []
+  gameOverCanvas: {fileID: 223587379477855356, guid: 27986fb35e9cd2d4c9037dc924ae990e,
+    type: 2}
+  winCanvas: {fileID: 223352796992684904, guid: 297533272f6ce524a9c9b6f6b976068b,
+    type: 2}
