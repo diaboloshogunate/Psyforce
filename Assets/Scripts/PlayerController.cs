@@ -53,6 +53,7 @@ public class PlayerController : PhysicsObject
                 hasWon = true;
             }
         }
+
         // check for above colliissions when the player is grounded (squshed)
         if (grounded)
         {
@@ -72,7 +73,7 @@ public class PlayerController : PhysicsObject
 
     protected override void ComputeVelocity()
     {
-        if (!isAlive) return;
+        if (!isAlive || hasWon) return;
 
         Vector2 move = Vector2.zero;
         
@@ -107,7 +108,6 @@ public class PlayerController : PhysicsObject
         velocity = new Vector2(0, 0);
         animator.StopPlayback();
         isAlive = false;
-        
     }
 }
 
