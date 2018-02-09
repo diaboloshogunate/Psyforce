@@ -101,8 +101,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minGroundNormalY: 0.65
   isAlive: 1
+  hasWon: 0
   maxSpeed: 10
-  jumpHeight: 4.6
+  jumpHeight: 4.2
   jumpApexTime: 0.5
   jumpRelease: 0.5
   playerNumber: 0

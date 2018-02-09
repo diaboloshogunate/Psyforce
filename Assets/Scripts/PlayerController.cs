@@ -26,9 +26,10 @@ public class PlayerController : PhysicsObject
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+
         gravity = (-2f * jumpHeight) / (jumpApexTime * jumpApexTime);
         Physics2D.gravity = new Vector2(0f, gravity);
-        jumpVelocity =  Mathf.Sqrt(-2 * Physics2D.gravity.y * jumpHeight);
+        jumpVelocity = Physics2D.gravity.y * -1f * jumpApexTime;//Mathf.Sqrt(-2f * Physics2D.gravity.y * jumpHeight);
     }
 
     void Start()
@@ -60,6 +61,7 @@ public class PlayerController : PhysicsObject
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 1.01f);
             if (hit.collider != null)
             {
+                Debug.Log(gameObject.name + " hit " + hit.collider.gameObject.name);
                 isAlive = false;
             }
         }
