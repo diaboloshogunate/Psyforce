@@ -29,7 +29,7 @@ public class PlayerController : PhysicsObject
 
         gravity = (-2f * jumpHeight) / (jumpApexTime * jumpApexTime);
         Physics2D.gravity = new Vector2(0f, gravity);
-        jumpVelocity = Physics2D.gravity.y * -1f * jumpApexTime;//Mathf.Sqrt(-2f * Physics2D.gravity.y * jumpHeight);
+        jumpVelocity = Mathf.Sqrt(-2f * Physics2D.gravity.y * jumpHeight);
     }
 
     void Start()
