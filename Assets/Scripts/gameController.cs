@@ -18,7 +18,7 @@ public class gameController : MonoBehaviour {
         if (HasDied() && !isGameOver)
         {
             isGameOver = true;
-            StartCoroutine(gameOver(gameOverCanvas));
+            Instantiate(gameOverCanvas);
         }
 
         if(HasWon() && !isWin)
@@ -51,14 +51,6 @@ public class gameController : MonoBehaviour {
                 return true;
         }
         return false;
-    }
-
-    IEnumerator gameOver(Canvas canvas)
-    {
-        isGameOver = true;
-        Instantiate(canvas);
-        yield return new WaitForSeconds(3);
-        SceneManager.LoadScene(0);
     }
 
     IEnumerator WinCanvasAndExit(Canvas canvas)
