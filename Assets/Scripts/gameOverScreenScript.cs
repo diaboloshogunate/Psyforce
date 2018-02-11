@@ -11,13 +11,11 @@ public class gameOverScreenScript : MonoBehaviour {
         currentScene = SceneManager.GetActiveScene();
 	}
 
-    public void RestartScene()
-    {
+    public void RestartScene() {
         SceneManager.LoadScene(currentScene.name);
     }
 
-    public void MainMenu()
-    {
+    public void MainMenu() {
         SceneManager.LoadScene(0);
     }
 }
