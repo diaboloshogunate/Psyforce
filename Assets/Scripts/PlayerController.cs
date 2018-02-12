@@ -58,7 +58,7 @@ public class PlayerController : PhysicsObject
         // check for above colliissions when the player is grounded (squshed)
         if (grounded)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 1.01f);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 1.001f);
             if (hit.collider != null)
             {
                 Debug.Log(gameObject.name + " hit " + hit.collider.gameObject.name);
