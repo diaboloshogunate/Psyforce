@@ -85,4 +85,11 @@ public class gameController : MonoBehaviour {
         yield return new WaitForSeconds(5);
         SceneManager.LoadScene(0);
     }
+
+    private void OnLevelWasLoaded(int level)
+    {
+        this.isWin = false;
+        this.isGameOver = false;
+        players = FindObjectsOfType<PlayerController>();
+    }
 }
