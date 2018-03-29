@@ -18,7 +18,12 @@ public class PlayerController : PhysicsObject
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private bool isFacingRight = true;
-    
+
+
+    AudioSource audio;
+    public AudioClip footsteps;
+    public AudioClip punch;
+
     protected RaycastHit2D[] hitBuffer = new RaycastHit2D[16];
     protected ContactFilter2D contactFilter;
 
@@ -26,6 +31,7 @@ public class PlayerController : PhysicsObject
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        audio = GetComponent<AudioSource>();
 
         gravity = (-2f * jumpHeight) / (jumpApexTime * jumpApexTime);
         Physics2D.gravity = new Vector2(0f, gravity);
@@ -37,6 +43,18 @@ public class PlayerController : PhysicsObject
         contactFilter.useTriggers = false;
         contactFilter.SetLayerMask(Physics2D.GetLayerCollisionMask(gameObject.layer));
         contactFilter.useLayerMask = true;
+    }
+
+    protected void Update()
+    {
+        base.Update();
+
+        if (grounded && Mathf.Abs(velocity.x) > 0.1 && !audio.isPlaying)
+        {
+            Debug.Log("playing audio");
+            audio.clip = footsteps;
+            audio.Play();
+        }
     }
 
     protected void FixedUpdate()

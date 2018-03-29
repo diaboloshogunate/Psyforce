@@ -10,10 +10,12 @@ public class buttonScript : MonoBehaviour {
 
     private bool isDown;
     private SpriteRenderer spriteRenderer;
+    AudioSource audio;
 
     private void Awake()
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        audio = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -33,6 +35,7 @@ public class buttonScript : MonoBehaviour {
         if (collision.gameObject.tag == "Player")
         {
             isDown = true;
+            audio.Play();
 
             foreach (GameObject o in m_targetObject)
             {
@@ -46,6 +49,7 @@ public class buttonScript : MonoBehaviour {
         if (collision.gameObject.tag == "Player")
         {
             isDown = false;
+            audio.Play();
         }
     }
 }
