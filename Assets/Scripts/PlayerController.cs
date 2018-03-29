@@ -43,6 +43,8 @@ public class PlayerController : PhysicsObject
     {
         base.FixedUpdate();
 
+        // @TODO get all hits, loop through once, check each condition or intentially shot the cast outside itself using bounds?
+
         // only doing rayast for non physics calculations like win and lose collissions
         // check for forward collissions
         Vector2 dir = new Vector2(rb2d.velocity.x, 0f);
@@ -54,16 +56,22 @@ public class PlayerController : PhysicsObject
                 hasWon = true;
             }
         }
+    }
 
-        // check for above colliissions when the player is grounded (squshed)
-        if (grounded)
+    protected void OnTriggerEnter2D(Collider2D collision)
+    {
+        Collider2D collider = collision.GetComponent<Collider2D>();
+        
+        ContactPoint2D[] contactPoint = new ContactPoint2D[1];
+        collision.GetContacts(contactPoint);
+        Vector3 center = collider.bounds.center;
+
+        bool right = contactPoint[0].point.x > center.x;
+        bool top = contactPoint[0].point.y > center.y;
+
+        if(this.grounded && top)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 1.001f);
-            if (hit.collider != null)
-            {
-                Debug.Log(gameObject.name + " hit " + hit.collider.gameObject.name);
-                isAlive = false;
-            }
+            this.isAlive = false;
         }
     }
 

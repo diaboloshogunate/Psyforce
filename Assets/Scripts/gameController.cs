@@ -24,7 +24,8 @@ public class gameController : MonoBehaviour {
         if(HasWon() && !isWin)
         {
             isWin = true;
-            StartCoroutine(WinCanvasAndExit(winCanvas));
+            Instantiate(winCanvas);
+            StartCoroutine(RestartGame());
         }
 
         if (Input.GetButtonDown("Cancel"))
@@ -53,9 +54,8 @@ public class gameController : MonoBehaviour {
         return false;
     }
 
-    IEnumerator WinCanvasAndExit(Canvas canvas)
+    IEnumerator RestartGame()
     {
-        Instantiate(canvas);
         yield return new WaitForSeconds(5);
         SceneManager.LoadScene(0);
     }
