@@ -26,7 +26,8 @@ public class SceneFade : MonoBehaviour
             return;
         }
 
-        alpha += fadeDir * fadeSpeed * Time.deltaTime;
+        Time.timeScale = 0;
+        alpha += fadeDir * fadeSpeed * Time.unscaledDeltaTime;
         alpha = Mathf.Clamp01(alpha);
         GUI.color = new Color(GUI.color.r, GUI.color.g, GUI.color.b, alpha);
         GUI.depth = drawDepth;
@@ -42,6 +43,7 @@ public class SceneFade : MonoBehaviour
         if (alpha == 0f)
         {
             isVisible = false;
+            Time.timeScale = 1f;
         }
     }
     
