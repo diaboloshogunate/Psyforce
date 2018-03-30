@@ -803,6 +803,11 @@ Prefab:
       propertyPath: targets.Array.data[1]
       value: 
       objectReference: {fileID: 1856840367}
+    - target: {fileID: 82917657440347118, guid: f2a5fffa575e1c8418943e683d4a1250,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.25
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114416002868317186, guid: f2a5fffa575e1c8418943e683d4a1250, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: f2a5fffa575e1c8418943e683d4a1250, type: 2}

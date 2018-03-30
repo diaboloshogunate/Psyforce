@@ -9,7 +9,6 @@ public class killingObjectScript : MonoBehaviour {
         if (collision.gameObject.tag == "Player")
         {
             collision.gameObject.SendMessage("kill");
-            Debug.Log("Kill message sent");
         }
     }
 }

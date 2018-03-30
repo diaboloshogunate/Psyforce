@@ -45,16 +45,16 @@ public class PlayerController : PhysicsObject
         contactFilter.useLayerMask = true;
     }
 
-    protected void Update()
+    void playFootstep()
     {
-        base.Update();
+        audio.clip = footsteps;
+        audio.Play();
+    }
 
-        if (grounded && Mathf.Abs(velocity.x) > 0.1 && !audio.isPlaying)
-        {
-            Debug.Log("playing audio");
-            audio.clip = footsteps;
-            audio.Play();
-        }
+    void playPunch()
+    {
+        audio.clip = punch;
+        audio.Play();
     }
 
     protected void FixedUpdate()
@@ -129,6 +129,7 @@ public class PlayerController : PhysicsObject
     {
         velocity = new Vector2(0, 0);
         animator.StopPlayback();
+        audio.Stop();
         isAlive = false;
     }
 }
