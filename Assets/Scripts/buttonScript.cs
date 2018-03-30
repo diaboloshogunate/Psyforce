@@ -52,4 +52,12 @@ public class buttonScript : MonoBehaviour {
             audio.Play();
         }
     }
+
+    void OnDrawGizmosSelected()
+    {
+        foreach (GameObject o in m_targetObject) {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transform.position, o.transform.position);
+        }
+    }
 }
