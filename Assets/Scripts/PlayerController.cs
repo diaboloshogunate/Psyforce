@@ -25,7 +25,6 @@ public class PlayerController : PhysicsObject
     public AudioClip punch;
 
     protected RaycastHit2D[] hitBuffer = new RaycastHit2D[16];
-    protected ContactFilter2D contactFilter;
 
     void Awake()
     {
@@ -84,7 +83,7 @@ public class PlayerController : PhysicsObject
         collision.GetContacts(contactPoint);
         Vector3 center = collider.bounds.center;
 
-        bool right = contactPoint[0].point.x > center.x;
+        //bool right = contactPoint[0].point.x > center.x;
         bool top = contactPoint[0].point.y > center.y;
 
         if(this.grounded && top)
