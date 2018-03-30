@@ -26,6 +26,13 @@ public class playerCamera : MonoBehaviour
         transform.position = smothedPosition;
     }
 
+    void OnGUI()
+    {
+        // note there is a min height. it would be better to use a repeated texture here instead
+        // i am doing this as a quick hack
+        GUI.Box(new Rect(0, Screen.height/2, Screen.width, 1f), "");
+    }
+
     void OnDrawGizmosSelected()
     {
         this.camera = this.GetComponent<Camera>();
