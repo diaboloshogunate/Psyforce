@@ -42,6 +42,11 @@ public class gameController : MonoBehaviour {
         if (HasDied() && !isGameOver)
         {
             isGameOver = true;
+            // Stop all audio
+            AudioSource[] audioSources = FindObjectsOfType<AudioSource>();
+            foreach (AudioSource audio in audioSources) {
+                audio.Stop();
+            }
             Instantiate(gameOverCanvas);
         }
 

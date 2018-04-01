@@ -128,7 +128,7 @@ public class PlayerController : PhysicsObject
     {
         velocity = new Vector2(0, 0);
         animator.StopPlayback();
-        audio.Stop();
+        audio.mute = true;
         isAlive = false;
     }
 }
