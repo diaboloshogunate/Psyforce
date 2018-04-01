@@ -42,11 +42,16 @@ public class gameController : MonoBehaviour {
         if (HasDied() && !isGameOver)
         {
             isGameOver = true;
+
+            // Kill the other player to prevent them from moving
+            foreach (PlayerController player in players) { player.SendMessage("kill"); }
+
             // Stop all audio
             AudioSource[] audioSources = FindObjectsOfType<AudioSource>();
             foreach (AudioSource audio in audioSources) {
                 audio.Stop();
             }
+
             Instantiate(gameOverCanvas);
         }
 
