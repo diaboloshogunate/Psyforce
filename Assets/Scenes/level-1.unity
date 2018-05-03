@@ -943,6 +943,24 @@ Transform:
   m_PrefabParentObject: {fileID: 4921855555576382, guid: 1226a24ec8af99e4a86d77ddf71ff3cc,
     type: 2}
   m_PrefabInternal: {fileID: 25314787}
+--- !u!1 &1906035046 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1390361383688216, guid: a9c06142bdadcb64a92751fdac1ffd35,
+    type: 2}
+  m_PrefabInternal: {fileID: 663731823}
+--- !u!114 &1906035048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1906035046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7a56d28d3c1bc6419d439c7a4a87a53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeOutTexture: {fileID: 2800000, guid: 0d07ea86de5ddb348b9ae70e1add6dc5, type: 3}
+  isVisible: 0
 --- !u!1 &1937345622 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1183895954722964, guid: 5d2c624a257492749a19e8ca41188ec1,
@@ -999,7 +1017,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4921855555576382, guid: 1226a24ec8af99e4a86d77ddf71ff3cc, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -12
+      value: -13
       objectReference: {fileID: 0}
     - target: {fileID: 4921855555576382, guid: 1226a24ec8af99e4a86d77ddf71ff3cc, type: 2}
       propertyPath: m_LocalPosition.y

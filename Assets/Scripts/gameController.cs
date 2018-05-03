@@ -8,12 +8,6 @@ public class gameController : MonoBehaviour {
 
     public PlayerController[] players;
     public static gameController instance = null;
- 
-
-    [Header("State transition canvases")]
-    public Canvas gameOverCanvas;
-    public Canvas winCanvas;
-    public List<string> sceneNamesInOrder;
 
 
     protected bool isGameOver = false;
@@ -42,26 +36,15 @@ public class gameController : MonoBehaviour {
         if (HasDied() && !isGameOver)
         {
             isGameOver = true;
-
-            // Kill the other player to prevent them from moving
             foreach (PlayerController player in players) { player.SendMessage("kill"); }
-
-            // Stop all audio
-            AudioSource[] audioSources = FindObjectsOfType<AudioSource>();
-            foreach (AudioSource audio in audioSources) {
-                audio.Stop();
-            }
-
-            Instantiate(gameOverCanvas);
+            fader.FadeTo("GameOver");
         }
 
         if(HasWon() && !isWin)
         {
             isWin = true;
-            fader.FadeTo(sceneNamesInOrder[0]);
-            sceneNamesInOrder.RemoveAt(0);
-            //Instantiate(winCanvas);
-            //StartCoroutine(RestartGame());
+            foreach (PlayerController player in players) { player.SendMessage("kill"); }
+            fader.FadeTo("Win");
         }
 
         if (Input.GetButtonDown("Cancel"))
